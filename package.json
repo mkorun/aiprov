@@ -24,7 +24,7 @@
     "tui"
   ],
   "bin": {
-    "aiprov": "./dist/index.js"
+    "aiprov": "dist/index.js"
   },
   "scripts": {
     "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', 0o755)\"",
