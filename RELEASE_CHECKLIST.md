@@ -60,3 +60,4 @@ Note: `npx` caches packages locally. For a first-ever publish of a version this 
 | Version | Date | Node | npm | ExifTool | Result | Note |
 |---|---|---|---|---|---|---|
 | 0.1.0 | 2026-07-09 | v24.18.0 | 11.16.0 | 13.25 | ✅ | All positive/negative checks passed; `aiPrompt` explicitly filled in and verified, `description` deliberately left empty and correctly not written. |
+| 0.1.0 | 2026-07-09 | v24.18.0 | 11.16.0 | — | ✅ | Post-publish smoke test: `npm view` and `npx @mkorun/aiprov@latest --help`/`--version` resolved correctly from the registry (~5 min after publish; briefly 404 right after publish, then resolved — registry replication delay). |
