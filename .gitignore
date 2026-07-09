@@ -3,3 +3,4 @@ dist/
 example_data/
 *.tgz
 *.Zone.Identifier
+.claude/
