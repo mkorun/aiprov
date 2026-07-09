@@ -1,50 +1,50 @@
 # Release Checklist
 
-Manueller Verifikationsablauf vor jedem `npm publish`. Kein automatisierter Test — bewusst interaktiv, weil das eigentliche Verhalten (TUI-Prompts, exiftool-Aufruf, geschriebene XMP-Tags) am Ende nur durch echtes Ausführen zuverlässig geprüft wird.
+Manual verification procedure to run before every `npm publish`. Not an automated test — deliberately interactive, because the actual behavior (TUI prompts, the exiftool invocation, the written XMP tags) can only be reliably checked by actually running it.
 
-## Ablauf
+## Procedure
 
 ```bash
 npm run check
 
 npm pack
-npm install -g ./mkorun-aiprov-0.1.0.tgz   # ggf. --prefix <temp-dir> falls kein Schreibzugriff auf den globalen npm-Prefix
+npm install -g ./mkorun-aiprov-0.1.0.tgz   # add --prefix <temp-dir> if you don't have write access to the global npm prefix
 
 aiprov --help
 aiprov --version
 
-cp irgendein-testbild.png aiprov-test.png
+cp some-test-image.png aiprov-test.png
 aiprov aiprov-test.png
 
 exiftool -XMP:all -G1 -a aiprov-test.png
 ```
 
-## Positiv-Prüfung
+## Positive checks
 
-| Feld | Erwartung |
+| Field | Expected |
 |---|---|
-| `XMP-dc:Creator` | gesetzt |
-| `XMP-xmp:CreateDate` | gesetzt |
-| `XMP-dc:Description` | gesetzt oder bewusst leer |
-| `XMP-dc:Subject` | gesetzt |
+| `XMP-dc:Creator` | set |
+| `XMP-xmp:CreateDate` | set |
+| `XMP-dc:Description` | set, or deliberately left empty |
+| `XMP-dc:Subject` | set |
 | `XMP-iptcExt:DigitalSourceType` | `trainedAlgorithmicMedia` |
 | `XMP-photoshop:Credit` | `Michael Kortstiege / <Tool>` |
-| `XMP-<namespace>:aiTool` | gesetzt |
-| `XMP-<namespace>:destination` | gesetzt |
-| `XMP-<namespace>:aiPrompt` | gesetzt, falls eingegeben |
+| `XMP-<namespace>:aiTool` | set |
+| `XMP-<namespace>:destination` | set |
+| `XMP-<namespace>:aiPrompt` | set, if provided |
 
-## Negativ-Prüfung
+## Negative checks
 
-| Feld | Erwartung |
+| Field | Expected |
 |---|---|
-| `XMP-dc:rights` | nicht automatisch gesetzt |
-| `XMP-xmpRights:WebStatement` | nicht automatisch gesetzt |
-| `acquireLicensePage` | nicht automatisch gesetzt |
+| `XMP-dc:rights` | not set automatically |
+| `XMP-xmpRights:WebStatement` | not set automatically |
+| `acquireLicensePage` | not set automatically |
 
-Erst wenn beide Tabellen passen: veröffentlichen.
+Only publish once both tables check out.
 
 ## Verification Log
 
-| Version | Datum | Node | npm | ExifTool | Ergebnis | Notiz |
+| Version | Date | Node | npm | ExifTool | Result | Note |
 |---|---|---|---|---|---|---|
-| 0.1.0 | 2026-07-09 | v24.18.0 | 11.16.0 | 13.25 | ✅ | Alle Positiv-/Negativ-Prüfungen bestanden; `aiPrompt` explizit befüllt und verifiziert, `description` bewusst leer gelassen und korrekt nicht geschrieben. |
+| 0.1.0 | 2026-07-09 | v24.18.0 | 11.16.0 | 13.25 | ✅ | All positive/negative checks passed; `aiPrompt` explicitly filled in and verified, `description` deliberately left empty and correctly not written. |
