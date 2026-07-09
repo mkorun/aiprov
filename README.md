@@ -239,4 +239,4 @@ Important: `creditText` must come from the **image's** XMP metadata, not from th
 - [EU AI Act Art. 50 (transparency obligations)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
 - [Google image license metadata guide](https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata)
 - [schema.org ImageObject](https://schema.org/ImageObject)
-- [ExifTool custom namespace docs](https://exiftool.org/config.html)
+- [ExifTool custom namespace docs](https://exiftool.sourceforge.net/config.html)
