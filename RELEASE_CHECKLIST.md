@@ -43,6 +43,18 @@ exiftool -XMP:all -G1 -a aiprov-test.png
 
 Only publish once both tables check out.
 
+## Post-publish smoke test
+
+After `npm publish`, verify the package resolves correctly from the registry itself — not just from your local tarball:
+
+```bash
+npm view @mkorun/aiprov
+npx @mkorun/aiprov --help
+npx @mkorun/aiprov --version
+```
+
+Note: `npx` caches packages locally. For a first-ever publish of a version this is a non-issue, but on subsequent releases use `npx --yes @mkorun/aiprov@latest` to force resolution against the registry instead of a potentially stale cached copy.
+
 ## Verification Log
 
 | Version | Date | Node | npm | ExifTool | Result | Note |
