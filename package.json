@@ -1,0 +1,45 @@
+{
+  "name": "@mkorun/aiprov",
+  "version": "0.1.0",
+  "description": "Interactive TUI for writing IPTC/XMP provenance metadata to AI-generated images",
+  "type": "module",
+  "author": "Michael Kortstiege <michael@mko.run>",
+  "license": "MIT",
+  "homepage": "https://github.com/mkorun/aiprov#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkorun/aiprov.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "ai-disclosure",
+    "xmp",
+    "iptc",
+    "exiftool",
+    "eu-ai-act",
+    "provenance",
+    "metadata",
+    "tui"
+  ],
+  "bin": {
+    "aiprov": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', 0o755)\"",
+    "check": "npm run build && node --check dist/index.js && npm pack --dry-run",
+    "prepublishOnly": "npm run check"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ]
+}
